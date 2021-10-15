@@ -83,9 +83,10 @@ var app = angular.module('application', ['ngRoute']);
 							else
 							{
 								$.post("process/paydue.php", {u:us,p:pau}, function(pd){ 				
-								alert(pd);
+								// alert(pd);
 								if(pd=='Saved')
 								{
+									alert('payment uploaded successfully');
 									window.location.reload();
 								}
 								else
@@ -133,7 +134,7 @@ var app = angular.module('application', ['ngRoute']);
 							// alert(JSON.stringify($scope.stlo));
 							if($scope.stlo!='welcome')
 							{
-								alert('Invalid details');
+								alert('Incorrect Email or Password');
 								window.location.reload();
 							}
 							else
@@ -248,7 +249,7 @@ var app = angular.module('application', ['ngRoute']);
 							// alert(JSON.stringify($scope.urv));
 						if($scope.urv=='exist')
 						{							
-							alert('Retry! (Email or Phone Number already exist)');							
+							alert('Retry! (Email or Phone Number or Matric Number already exist)');							
 						}
 
 						else if($scope.urv=='saved')
@@ -315,10 +316,10 @@ var app = angular.module('application', ['ngRoute']);
 					}).then(function mysucc(srr)
 					{		
 						$scope.star=srr.data;
-							 alert(JSON.stringify($scope.star));
+							 // alert(JSON.stringify($scope.star));
 						if($scope.star=='exist')
 						{							
-							alert('Retry! (Email already exist)');							
+							alert('Retry! (Email or Phone Number already exist)');							
 						}
 						else if($scope.star=='saved')
 						{							
