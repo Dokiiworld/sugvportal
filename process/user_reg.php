@@ -22,7 +22,7 @@ $status="active";
   // echo json_encode($vo);
 function userreg($conn,$idn,$em,$pn,$vmag,$status)
 		{
-			$sa= $conn->prepare("SELECT * from user where email='$em' or phone='$pn'");
+			$sa= $conn->prepare("SELECT * from user where email='$em' or phone='$pn' or id_number='$idn'");
 			if($sa->execute())
 			{				
 				$gi=$sa->get_result();
@@ -38,25 +38,25 @@ function userreg($conn,$idn,$em,$pn,$vmag,$status)
 					$cm->bind_param("sssss",$idn,$pn,$em,$vmag,$status);
 					if($cm->execute())
 					{						
-											// $to ="$em";
-											// $subject="Registration successful | NUT";
-											// $message="
-											// <html>
-											// 	<body>														
-											// 		<h2>User Registration | NUT</h2>					
-											// 		<p>Hello $idn, <br> Your account has been successfully created
-											// 		<p>Thank You!</p>
-											// 		<p>Cheers,<br><a href='https://vportal.ng'>V-Portal Team.</a></p>
-											// 	</body>
-											// </html>
-											// ";
-											// $headers= "MIME-Version: 1.0" . "\r\n";
-											// $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-											// $headers .= 'From: <info@vportal.ng>' . "\r\n";
+											$to ="$em";
+											$subject="Student Registration Successful!";
+											$message="
+											<html>
+												<body>								
+																	
+													<p>You have been successfully registered in SUG-V-Portal<br>Always remember your details;<br>Matric No: $idn<br>Email: $em<br>Phone No: $pn
+													<p>Thank You!</p>
+													<p>Cheers,<br><a href='#'>SUG-V-Portal Team.</a></p>
+												</body>
+											</html>
+											";
+											$headers= "MIME-Version: 1.0" . "\r\n";
+											$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+											$headers .= 'From: SUG-V-PORTAL <info@sugvportal.ezamatt.com>' . "\r\n";
 
-											// mail($to,$subject,$message,$headers);
+											mail($to,$subject,$message,$headers);
 
-											echo json_encode('saved');
+						echo json_encode('saved');
 					}
 					else
 					{
